@@ -6,6 +6,20 @@ Daggerfall Unity is an open source recreation of Daggerfall in the Unity engine 
 
 Experience the adventure and intrigue of Daggerfall with all of its original charm along with hundreds of fixes, quality of life enhancements, and extensive mod support.
 
+## Architecture
+
+Daggerfall Unity is built on a modular architecture that leverages the power of the Unity engine while maintaining a clear separation from the original Daggerfall's game assets. This design ensures that the project remains a faithful recreation of the classic game while providing a flexible and extensible foundation for new features and mods.
+
+The core of the application is a set of C# scripts, organized into a hierarchical structure that promotes code reusability and maintainability. The main components of the architecture are:
+
+*   **Game Logic:** The `Assets/Scripts/Game` directory contains the primary gameplay logic, including character controllers, item systems, quest engines, and combat mechanics.
+*   **API for Modding:** A dedicated `Assets/Scripts/API` provides a stable interface for modders to interact with the game's systems, allowing them to create new content and modify existing gameplay elements without altering the core source code.
+*   **Asset Management:** The project uses Unity's Addressable Asset System to manage game assets, enabling efficient memory usage and allowing for the dynamic loading of assets at runtime.
+*   **Daggerfall Asset Importers:** Custom importers and readers are used to load and process the original Daggerfall's game assets, such as textures, models, and sounds, from the `StreamingAssets` folder.
+*   **Utility and Internal Systems:** The `Assets/Scripts/Utility` and `Assets/Scripts/Internal` directories contain a collection of helper classes and internal systems that support the main game logic, such as file I/O, data structures, and debugging tools.
+
+This modular and extensible architecture has been instrumental in the success of Daggerfall Unity, fostering a vibrant modding community and enabling the continuous improvement of the game.
+
 ## Classic Daggerfall Plus
 
 + Cross-platform without emulation (Windows/Linux/Mac)
@@ -31,6 +45,46 @@ Here are a couple of links with more detailed steps to help you get started usin
 + [Installing Daggerfall Unity Cross Platform](https://github.com/Interkarma/daggerfall-unity/wiki/Installing-Daggerfall-Unity-Cross-Platform)
 
 # System Requirements
+
+## Building from Source
+
+This guide provides instructions for building Daggerfall Unity from source on a Linux system.
+
+### Prerequisites
+
+*   **Unity Editor:** You will need Unity version **2019.4.40f1**. You can download it from the [Unity Download Archive](https://unity3d.com/get-unity/download/archive).
+*   **Original Daggerfall Game Files:** Daggerfall Unity requires the original game assets from a classic Daggerfall installation. You can obtain a free copy of Daggerfall from [Steam](https://store.steampowered.com/app/1812390/The_Elder_Scrolls_II_Daggerfall/).
+
+### Setup
+
+1.  **Clone the Repository:**
+
+    ```bash
+    git clone https://github.com/Interkarma/daggerfall-unity.git
+    cd daggerfall-unity
+    ```
+
+2.  **Place Daggerfall Game Files:**
+
+    Copy the classic Daggerfall game files (the contents of the `DF/DAGGER` directory) into the `Assets/StreamingAssets/GameFiles` directory within the cloned repository.
+
+### Building
+
+1.  **Open the Project in Unity:**
+
+    *   Launch the Unity Hub.
+    *   Click the "Add" button and select the cloned `daggerfall-unity` directory.
+    *   Open the project in the Unity Editor.
+
+2.  **Build for Linux:**
+
+    You can build the project using the command line. The following command will create a standalone 64-bit Linux build:
+
+    ```bash
+    /path/to/your/Unity/2019.4.40f1/Editor/Unity -quit -batchmode -projectPath . -buildLinux64Player Builds/DaggerfallUnity.x86_64
+    ```
+
+    Replace `/path/to/your/Unity/2019.4.40f1/Editor/Unity` with the actual path to your Unity editor executable. The build will be placed in the `Builds` directory.
 
 Daggerfall Unity has the following system requirements. Please note that optional mods may substantially increase system requirements or cause game to become less stable.
 
